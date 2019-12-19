@@ -32,23 +32,30 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program at end of file"""
         return True
 
-    def do_create(self, line):
+    def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it
         Exceptions:
             SyntaxError: when there is no args given
             NameError: when there is no object taht has the name
         """
         try:
-            if not line:
+            if not arg:
                 raise SyntaxError()
-            my_list = line.split(" ")
+            my_list = arg.split(" ")
             obj = eval("{}()".format(my_list[0]))
+            if len(my_list) > 1:
+                p = dict(arg.split('=') for arg in my_list[1:])
+                for key, val in p.items():
+                    if '_' in val:
+                        val = val.replace('_', ' ')
+                    if hasattr(obj, key):
+                        setattr(obj, key, val)
             obj.save()
             print("{}".format(obj.id))
         except SyntaxError:
-            print("** class name missing **")
+                        print("** class name missing **")
         except NameError:
-            print("** class doesn't exist **")
+                        print("** class doesn't exist **")
 
     def do_show(self, line):
         """Prints the string representation of an instance
