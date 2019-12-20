@@ -73,4 +73,7 @@ class FileStorage:
         if obj is None:
             return
         else:
-            self.__objects.pop("{}.{}".format(type(obj).__name__, obj.id))
+            try:
+                self.__objects.pop("{}.{}".format(type(obj).__name__, obj.id))
+            except:
+                pass
