@@ -75,5 +75,6 @@ class FileStorage:
         else:
             try:
                 self.__objects.pop("{}.{}".format(type(obj).__name__, obj.id))
+                self.save()
             except:
                 pass
