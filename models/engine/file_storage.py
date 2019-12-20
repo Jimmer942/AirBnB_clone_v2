@@ -30,11 +30,14 @@ class FileStorage:
         else:
             lk = list(self.__objects.keys())
             lo = list(self.__objects.values())
-            a = len(lk) - 1
+            a = len(lk)
             for i in range(a):
-                if type(lo[i]) != cls:
-                    del lo[i]
-                    del lk[i]
+                try:
+                    if type(lo[i]) != cls:
+                        del lo[i]
+                        del lk[i]
+                except:
+                    pass
             return dict(zip(lk,lo))
 
 
