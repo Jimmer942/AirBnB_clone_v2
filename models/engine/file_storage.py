@@ -28,15 +28,11 @@ class FileStorage:
         if cls is None:
             return self.__objects
         else:
-            lk = list(self.__objects.keys())
-            lo = list(self.__objects.values())
-            a = len(lk) - 1
-            for i in range(a):
-                if type(lo[i]) != cls:
-                    del lo[i]
-                    del lk[i]
-            return dict(zip(lk,lo))
-
+            d = {}
+            for k in self.__objects.keys():
+                if type(self.__objects[k]) == cls:
+                    d.setdefault(k, self.__objects[k])
+            return d
 
                 
 
@@ -73,4 +69,8 @@ class FileStorage:
         if obj is None:
             return
         else:
-            self.__objects.pop("{}.{}".format(type(obj).__name__, obj.id))
+            try:
+                self.__objects.pop("{}.{}".format(type(obj).__name__, obj.id))
+                self.save()
+            except:
+                pass
