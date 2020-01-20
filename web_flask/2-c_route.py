@@ -21,7 +21,7 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def hello_c(text):
     """ C ... """
-    return "C " + text
+    return "C " + text.replace('_', ' ')
 
 if __name__ == '__main__':
     app.run()
