@@ -4,6 +4,7 @@ from models.base_model import BaseModel
 from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship, backref
 
+
 class Place(BaseModel):
     """This is the class for Place
     Attributes:
