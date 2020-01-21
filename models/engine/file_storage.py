@@ -34,8 +34,6 @@ class FileStorage:
                     d.setdefault(k, self.__objects[k])
             return d
 
-                
-
     def new(self, obj):
         """sets __object to given obj
         Args:
@@ -66,6 +64,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
+        """ Delete an object """
         if obj is None:
             return
         else:
