@@ -73,3 +73,7 @@ class FileStorage:
                 self.save()
             except:
                 pass
+
+    def close(self):
+        """ deserializes the JSON file to objects"""
+        self.reload()
